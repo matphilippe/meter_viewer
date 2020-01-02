@@ -25,11 +25,14 @@ class CaptCamera:
         return image
 
     def capture_to_file(self, file, warmup=1):
-        self.gpio_handler.setON()
-        self.camera.start_preview()
-        time.sleep(warmup)
-        self.camera.capture(file)
-        self.camera.stop_preview()
-        self.gpio_handler.setOFF()
-        time.sleep(warmup / 2)
+        my_file = open('file', 'wb')
+        with PiCamera() as camera:
+            self.gpio_handler.setON()
+            camera.start_preview()
+            time.sleep(warmup)
+            camera.capture(my_file)
+            camera.stop_preview()
+            self.gpio_handler.setOFF()
+            time.sleep(warmup / 2)
+        my_file.close()
         return None
