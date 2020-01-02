@@ -15,7 +15,7 @@ def send_capture():
     # 7 and 11 are the GPIO ports for leds.
     # We should give them as req args.
     raspi_handler = raspi.CaptCamera(gpio_list=[7, 11])
-    raspi_handler.capture_to_file('./temp/images/' + constants.CAPTURE_IMG)
+    raspi_handler.capture_to_file('app/temp/images/' + constants.CAPTURE_IMG)
     return send_from_directory('./temp/images', constants.CAPTURE_IMG)
 
 
