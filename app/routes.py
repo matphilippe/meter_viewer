@@ -1,5 +1,5 @@
 from app import flask_app
-from flask import render_template, send_from_directory, request
+from flask import render_template, send_from_directory, request, abort
 import app.libraries.raspi_capture.capture as raspi
 import app.constants as constants
 
@@ -24,3 +24,8 @@ def send_capture():
 @flask_app.route('/capture/dummy', methods=['GET'])
 def send_dummy_photo():
     return send_from_directory('./static/images', constants.DUMMY_IMG)
+
+
+@flask_app.route('/teapot', methods=['GET'])
+def imateapot():
+    abort(418)
