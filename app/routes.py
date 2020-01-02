@@ -21,4 +21,4 @@ def send_capture():
 
 @flask_app.route('/capture/dummy', methods=['GET'])
 def send_dummy_photo():
-    return send_from_directory('./static/images', constants.DUMMY_IMG)
+    return send_from_directory('app/static/images', constants.DUMMY_IMG)
