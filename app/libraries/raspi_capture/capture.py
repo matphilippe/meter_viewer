@@ -24,7 +24,7 @@ class CaptCamera:
         return image
 
     def capture_to_file(self, file, warmup=1):
-        my_file = open('file', 'wb')
+        my_file = open(file, 'wb')
         with PiCamera() as camera:
             self.gpio_handler.setON()
             camera.start_preview()
