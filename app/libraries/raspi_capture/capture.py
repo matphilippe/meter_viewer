@@ -23,9 +23,10 @@ class CaptCamera:
         image = raw_capture.array
         return image
 
-    def capture_to_file(self, file, warmup=1):
+    def capture_to_file(self, file, rot=0, warmup=1):
         my_file = open(file, 'wb')
         with PiCamera() as camera:
+            camera.rotation(rot)
             self.gpio_handler.setON()
             camera.start_preview()
             time.sleep(warmup)

@@ -1,7 +1,8 @@
 from app import flask_app
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request
 import app.libraries.raspi_capture.capture as raspi
 import app.constants as constants
+
 
 @flask_app.route('/')
 @flask_app.route('/index')
@@ -14,8 +15,9 @@ def index():
 def send_capture():
     # 7 and 11 are the GPIO ports for leds.
     # We should give them as req args.
+    rot = request.args.getg('rot', default=0)
     raspi_handler = raspi.CaptCamera(gpio_list=[7, 11])
-    raspi_handler.capture_to_file('app/temp/images/' + constants.CAPTURE_IMG)
+    raspi_handler.capture_to_file('app/temp/images/' + constants.CAPTURE_IMG, rot=rot)
     return send_from_directory('./temp/images', constants.CAPTURE_IMG)
 
 
