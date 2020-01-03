@@ -1,6 +1,10 @@
 FROM frankwolf/rpi-python3
 
 RUN mkdir /app/
-COPY requirements.txt /app/equirements.txt
 
-CMD ["bash']
+COPY . /app
+WORKDIR /app
+
+RUN pip install requirements.txt
+
+CMD ["flask", "run", "--host=0.0.0.0"]
