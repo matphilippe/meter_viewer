@@ -7,3 +7,4 @@ picamera==1.13
 python-dotenv==0.10.3
 RPi.GPIO==0.7.0
 Werkzeug==0.16.0
+
