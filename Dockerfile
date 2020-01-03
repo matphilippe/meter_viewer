@@ -1,13 +1,6 @@
-FROM resin/rpi-raspbian:jessie
+FROM frankwolf/rpi-python3
 
-# Install Python 3
-RUN apt-get install -y \
-    python3 \
-    python3-dev \
-    python3-pip \
-    python3-virtualenv \
-    --no-install-recommends
+RUN mkdir /app/
+COPY requirements.txt /app/equirements.txt
 
-RUN pip3 install --upgrade pip
-
-CMD ['bash']
+CMD ["bash']
