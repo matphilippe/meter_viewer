@@ -1,21 +1,13 @@
-FROM maidbot/resin-raspberrypi3-qemu
+FROM resin/rpi-raspbian:jessie
 
-#switch on systemd init system in container
-ENV INITSYSTEM off
+# Install Python 3
+RUN apt-get install -y \
+    python3 \
+    python3-dev \
+    python3-pip \
+    python3-virtualenv \
+    --no-install-recommends
 
-RUN apt-get update && apt-get install -y \
-        python-pip \
-	&& rm -rf /var/lib/apt/lists/*
+RUN pip3 install --upgrade pip
 
-# pip install python deps from requirements.txt
-# For caching until requirements.txt changes
-ENV READTHEDOCS True
-COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-
-COPY . /usr/src/app
-WORKDIR /usr/src/app
-
-EXPOSE 5000
-
-CMD ["bash","flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ['bash']
