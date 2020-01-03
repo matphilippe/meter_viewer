@@ -29,3 +29,7 @@ def send_dummy_photo():
 @flask_app.route('/teapot', methods=['GET'])
 def imateapot():
     abort(418)
+
+
+if __name__ == '__main__':
+    flask_app.run(host='0.0.0.0')
