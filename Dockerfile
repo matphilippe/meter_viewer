@@ -1,5 +1,4 @@
 FROM maidbot/resin-raspberrypi3-qemu
-RUN [ "cross-build-start" ]
 
 #switch on systemd init system in container
 ENV INITSYSTEM off
@@ -13,7 +12,6 @@ RUN apt-get update && apt-get install -y \
 ENV READTHEDOCS True
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
-RUN [ "cross-build-end" ]
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
