@@ -1,15 +1,13 @@
 from app.libraries.raspi_capture.gpio import GPIOHandler
 from picamera import PiCamera
-from picamera.array import PiRGBArray
 import time
-import os
 
 
 class CaptCamera:
 
     def __init__(self, gpio_list):
         self.gpio_handler = GPIOHandler(gpio_list)
-
+    '''
     def capture_to_array(self, warmup=1):
         with PiCamera() as camera:
             self.gpio_handler.setON()
@@ -22,7 +20,7 @@ class CaptCamera:
 
         image = raw_capture.array
         return image
-
+    '''
     def capture_to_file(self, file, rot=0, warmup=1):
         my_file = open(file, 'wb')
         with PiCamera() as camera:
